@@ -1,0 +1,47 @@
+<app-header (addEvent)="add()"></app-header>
+
+<div style="display: flex;align-items: center;justify-content: center;height: 80%;" *ngIf="foldersArray.length === 0">
+    <img *ngIf="!loading && foldersArray.length === 0 " src="assets/folder_open_FILL0_wght400_GRAD0_opsz24.svg"
+        alt="folder_open_FILL0_wght400_GRAD0_opsz24" style="height: 20%;width: 20%;opacity: 0.08;">
+</div>
+
+<div style="
+display: flex;
+height: auto;
+flex-wrap: wrap;
+width: 100%;" *ngIf="foldersArray.length > 0">
+
+    <mat-spinner diameter="60" *ngIf="loading"></mat-spinner>
+
+    <div *ngFor="let fldr of foldersArray" style="overflow: hidden; display: flex;flex-direction: column; cursor: pointer; 
+        padding: 10px 10px 0 10px; border-radius: 5px; height: 110px;box-shadow: 0 0 10px #000;
+        background-color: #fff;width: 185px;box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+        margin: 10px;">
+        <div (click)="open(fldr?.name,fldr?._id)" style="display: flex;align-items: flex-start; width: 100%;">
+            <img src="assets/folder_FILL0_wght400_GRAD0_opsz24.svg" alt="folder_FILL0_wght400_GRAD0_opsz24"
+                style="height: 60px;
+        width: 60px;filter: invert(47%) sepia(6%) saturate(23%) hue-rotate(325deg) brightness(89%) contrast(87%);">&nbsp;&nbsp;
+            <div
+                style="display: flex;flex-direction: column;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                <span
+                    style="font-weight: 500;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{fldr?.name}}</span>
+                <span style="font-size: 12px!important;">{{fldr?.nbr_files}}
+                    <span *ngIf="fldr?.nbr_files < 2">fichier</span>
+                    <span *ngIf="fldr?.nbr_files > 1">fichiers</span>
+                </span>
+                <span
+                    style="font-size: 12px!important;filter: invert(47%) sepia(6%) saturate(23%) hue-rotate(325deg) brightness(89%) contrast(87%);">{{fldr?.date
+                    | timeP}}</span>
+            </div>
+        </div>
+        <div style="display: flex;align-items: center   ;">
+            <button mat-icon-button color="warn" (click)="add(true,fldr?.name,fldr?._id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="edit(fldr?.name,fldr?._id)">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </div>
+    </div>
+
+</div>

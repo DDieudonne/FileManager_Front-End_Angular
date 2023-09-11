@@ -1,0 +1,31 @@
+<mat-card>
+    <mat-toolbar style="background-color: #fff!important;">
+        <mat-toolbar-row>
+            <span style="display: flex;flex-direction: column;">
+                <span>File Manager Master</span>
+                <div *ngIf="lct !== '/accueil'" style="font-weight: 300;font-size: 14px;">
+                    <div>
+                        <span style="cursor: pointer;" routerLink="/accueil">Accueil</span>
+                        <span> / </span>
+                        <span style="font-weight: 600;">{{id}}</span>
+                    </div>
+                </div>
+            </span>
+            <span class="example-spacer"></span>
+
+            <button matTooltip="Retour à l'accueil²" *ngIf="lct !== '/accueil'" mat-icon-button color="warn"
+                class="example-icon" aria-label="Example icon-button with share icon" routerLink="/accueil">
+                <img src="assets/undo_FILL0_wght400_GRAD0_opsz24.svg" alt="undo_FILL0_wght400_GRAD0_opsz24"
+                    style="height: 30px;width: 30px;">
+            </button>
+
+            <button matTooltip="Ajouter un nouveau dossier" mat-icon-button class="example-icon"
+                aria-label="Example icon-button with share icon" (click)="add()">
+                <img src="assets/note_stack_add_FILL0_wght400_GRAD0_opsz24.svg"
+                    alt="note_stack_add_FILL0_wght400_GRAD0_opsz24" style="height: 30px;width: 30px;">
+            </button>
+
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+</mat-card>

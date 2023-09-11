@@ -1,0 +1,28 @@
+<div *ngIf="data?.type !== 'del';else deleteTemplate">
+    <h1 mat-dialog-title>Quel est le nom du nouveau dossier / ficher ?</h1>
+    <div mat-dialog-content [formGroup]="form">
+        <p>Entrez le nom ici</p>
+        <mat-form-field style="width: 100%;">
+            <mat-label>Nom</mat-label>
+            <input matInput formControlName='nameCtrl' style="width: 100%;">
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close>Fermer</button>
+        <button mat-raised-button cdkFocusInitial *ngIf="data?.type !== 'edit'" [disabled]="!form.valid"
+            (click)="valid()">Valider</button>
+        <button mat-raised-button cdkFocusInitial *ngIf="data?.type === 'edit'" [disabled]="!form.valid"
+            (click)="valid()">Modifier</button>
+    </div>
+</div>
+
+<ng-template #deleteTemplate>
+    <h1 mat-dialog-title>Supprimer ?</h1>
+    <div mat-dialog-content>
+        <p>Continuer la suppréssion ?</p>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close>Annuler</button>
+        <button mat-raised-button cdkFocusInitial (click)="valid()">Continuer</button>
+    </div>
+</ng-template>
